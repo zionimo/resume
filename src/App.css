@@ -1,0 +1,5 @@
+/* 폰트 */
+@font-face {
+  font-family: logo;
+  src: url("./fonts/Nightydemo.otf");
+}
