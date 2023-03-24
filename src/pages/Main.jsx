@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Main = () => {
   const canvasRef = useRef(null);
+  const [jump, setJump] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -41,6 +42,7 @@ const Main = () => {
 
     const timer = 0;
     const flowerArr = [];
+    var jumpTimer = 0;
 
     // 1초마다 실행할 프레임 루프
     const loop = () => {
@@ -64,20 +66,35 @@ const Main = () => {
         // a.x--;
         a.draw();
       });
+
+      // 러너 점프 동작
+      if (jump == true) {
+        mario.y--;
+        jumpTimer++;
+      }
+      // 점프가 종료되면 원위치로 돌아오기
+      if (jump == false) {
+        if (mario.y < 200) {
+          mario.y++;
+        }
+      }
+      // 점프한지 100프레임이 넘으면 점프 중단
+      if (jumpTimer > 100) {
+        setJump(false);
+        jumpTimer = 0;
+      }
+
+      mario.draw();
     };
 
     loop();
 
-    // // 시각화
-    // const draw = () => {
-    //   // 러너 시각화
-    //   ctx.fillStyle = "red";
-    //   ctx.fillRect(mario.x, mario.y, mario.width, mario.height);
-
-    //   // 장애물 시각화
-    //   ctx.fillStyle = "black";
-    //   ctx.fillRect(flower.x, flower.y, flower.width, flower.height);
-    // };
+    // 러너 점프 동작
+    document.addEventListener("keydown", function (e) {
+      if (e.code === "Space") {
+        setJump(true);
+      }
+    });
   });
 
   return (
