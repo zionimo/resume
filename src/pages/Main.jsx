@@ -1,9 +1,13 @@
 import React, { useRef, useEffect } from "react";
 
+import marioIMG from "../img/mariostand.png";
+import marioJumpIMG from "../img/mariojump.png";
+import goombaIMG from "../img/goomba.png";
+
 const Main = () => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
-  const flowerArr = useRef([]);
+  const goombaArr = useRef([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -13,32 +17,58 @@ const Main = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    // 이미지 객체 생성
+    const marioImage = new Image();
+    marioImage.src = marioIMG;
+
+    const marioJumpImage = new Image();
+    marioJumpImage.src = marioJumpIMG;
+
+    const goombaImage = new Image();
+    goombaImage.src = goombaIMG;
+
     // 러너 설정
     var mario = {
       x: 10,
       y: 200,
       width: 50,
-      height: 70,
+      height: 80,
       draw() {
-        ctx.fillStyle = "green";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        // 이미지 그리기
+        if (jump == true) {
+          ctx.drawImage(
+            marioJumpImage,
+            this.x,
+            this.y,
+            this.width,
+            this.height
+          );
+        } else {
+          ctx.drawImage(marioImage, this.x, this.y, this.width, this.height);
+        }
+
+        // ctx.fillStyle = "green";
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
       },
     };
 
     // 장애물 설정
-    class Flower {
+    class Goomba {
       constructor() {
         this.x = 500;
-        this.y = 220;
-        this.width = 30;
-        this.height = 50;
+        this.y = 240;
+        this.width = 40;
+        this.height = 40;
       }
       draw() {
-        ctx.fillStyle = "red";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        // 이미지 그리기
+        ctx.drawImage(goombaImage, this.x, this.y, this.width, this.height);
+
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(this.x, this.y, this.width, this.height);
       }
     }
-    
+
     // 프레임 계산용 타이머
     var timer = 0;
     // 점프 시작부터 시간 측정
@@ -53,12 +83,12 @@ const Main = () => {
 
       // 300프레임 마다 장애물 배열에 생성
       if (timer % 300 === 0) {
-        var flower = new Flower();
-        flowerArr.current.push(flower);
+        var goomba = new Goomba();
+        goombaArr.current.push(goomba);
       }
 
       // 장애물이 화면에서 사라지면 (x<0) 배열에서 지우기
-      flowerArr.current.forEach((a, i, o) => {
+      goombaArr.current.forEach((a, i, o) => {
         if (a.x < 0) {
           o.splice(i, 1);
         } else {
@@ -88,11 +118,11 @@ const Main = () => {
     };
 
     // 충돌 계산
-    function crash(mario, flower) {
+    function crash(mario, goomba) {
       // x축 충돌 (장애물의 x위치 - (마리오 x위치 + 너비))
-      var xGap = flower.x - (mario.x + mario.width);
+      var xGap = goomba.x - (mario.x + mario.width);
       // y축 충돌 (장애물의 y위치 - (마리오의 y위치 + 높이))
-      var yGap = flower.y - (mario.y + mario.height);
+      var yGap = goomba.y - (mario.y + mario.height);
       // 각 축이 맞닿으면 애니메이션 정지
       if (xGap < 0 && yGap < 0) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
