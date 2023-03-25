@@ -1,111 +1,117 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 const Main = () => {
   const canvasRef = useRef(null);
-  const [jump, setJump] = useState(false);
+  const requestRef = useRef(null);
+  const flowerArr = useRef([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "lightblue";
-    ctx.fillRect(0, 0, window.innerWidth, window.innerHeight); // (0,0)위치의 좌표에 100x100사이즈 네모를 그려달라
 
-    // 러너
-    const mario = {
+    // 캔버스 너비,높이 지정
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // 러너 설정
+    var mario = {
       x: 10,
       y: 200,
-      width: 40,
-      height: 50,
+      width: 50,
+      height: 70,
       draw() {
-        // 러너 시각화
-        ctx.fillStyle = "red";
-        ctx.fillRect(mario.x, mario.y, mario.width, mario.height);
+        ctx.fillStyle = "green";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
       },
     };
-    mario.draw();
 
-    // 장애물
+    // 장애물 설정
     class Flower {
       constructor() {
         this.x = 500;
         this.y = 220;
-        this.width = 20;
-        this.height = 30;
+        this.width = 30;
+        this.height = 50;
       }
       draw() {
-        // 장애물 시각화
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "red";
         ctx.fillRect(this.x, this.y, this.width, this.height);
       }
     }
-    var flower = new Flower();
-
-    const timer = 0;
-    const flowerArr = [];
+    
+    // 프레임 계산용 타이머
+    var timer = 0;
+    // 점프 시작부터 시간 측정
     var jumpTimer = 0;
 
     // 1초마다 실행할 프레임 루프
     const loop = () => {
-      window.requestAnimationFrame(loop);
-      // 새롭게 그려진 장애물 이전의 장애물들 지우기
+      requestRef.current = requestAnimationFrame(loop);
+      timer++;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 120프레임마다 장애물을 하나씩 생성
-      if (timer % 120 === 0) {
+      // 300프레임 마다 장애물 배열에 생성
+      if (timer % 300 === 0) {
         var flower = new Flower();
-        // 생선된 장애물을 배열에 추가하기
-        flowerArr.push(flower);
+        flowerArr.current.push(flower);
       }
 
-      // 배열에 있는 모든 것을 다 draw()하기
-      flowerArr.forEach((a, i, o) => {
-        // 데이터가 쌓이지 않게 장애물의 x좌표가 0미만이면 제거
+      // 장애물이 화면에서 사라지면 (x<0) 배열에서 지우기
+      flowerArr.current.forEach((a, i, o) => {
         if (a.x < 0) {
           o.splice(i, 1);
+        } else {
+          // 장애물 속도 지정
+          a.x -= 2.5;
+          crash(mario, a);
+          a.draw();
         }
-        // a.x--;
-        a.draw();
       });
 
       // 러너 점프 동작
       if (jump == true) {
-        mario.y--;
+        mario.y -= 4;
         jumpTimer++;
       }
       // 점프가 종료되면 원위치로 돌아오기
-      if (jump == false) {
-        if (mario.y < 200) {
-          mario.y++;
-        }
+      else if (mario.y < 200) {
+        mario.y += 4;
       }
-      // 점프한지 100프레임이 넘으면 점프 중단
-      if (jumpTimer > 100) {
-        setJump(false);
+      // 점프한지 30프레임이 넘으면 점프 중단
+      if (jumpTimer > 30) {
+        jump = false;
         jumpTimer = 0;
       }
 
       mario.draw();
     };
 
-    loop();
+    // 충돌 계산
+    function crash(mario, flower) {
+      // x축 충돌 (장애물의 x위치 - (마리오 x위치 + 너비))
+      var xGap = flower.x - (mario.x + mario.width);
+      // y축 충돌 (장애물의 y위치 - (마리오의 y위치 + 높이))
+      var yGap = flower.y - (mario.y + mario.height);
+      // 각 축이 맞닿으면 애니메이션 정지
+      if (xGap < 0 && yGap < 0) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        cancelAnimationFrame(requestRef.current);
+      }
+    }
 
-    // 러너 점프 동작
+    var jump = false;
+    // 스페이스바 누르면 점프 true
     document.addEventListener("keydown", function (e) {
       if (e.code === "Space") {
-        setJump(true);
+        jump = true;
       }
     });
-  });
 
-  return (
-    <div>
-      <canvas
-        ref={canvasRef}
-        width={window.innerWidth}
-        height={window.innerHeight}
-      ></canvas>
-    </div>
-  );
+    loop();
+  }, []);
+
+  return <canvas ref={canvasRef} />;
 };
 
 export default Main;
