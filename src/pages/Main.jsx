@@ -3,11 +3,14 @@ import React, { useRef, useEffect } from "react";
 import marioIMG from "../img/mariostand.png";
 import marioJumpIMG from "../img/mariojump.png";
 import goombaIMG from "../img/goomba.png";
+import floorIMG from "../img/brick.png";
+import styled from "styled-components";
 
 const Main = () => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
   const goombaArr = useRef([]);
+  const floorArr = useRef([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -27,14 +30,18 @@ const Main = () => {
     const goombaImage = new Image();
     goombaImage.src = goombaIMG;
 
-    // 러너 설정
+    const floorImage = new Image();
+    floorImage.src = floorIMG;
+
+    // 러너 속성 설정
     var mario = {
-      x: 10,
-      y: 200,
+      x: 300,
+      y: 450,
       width: 50,
       height: 80,
       draw() {
-        // 이미지 그리기
+        // 캐릭터 이미지
+        // 점프 중일 때
         if (jump == true) {
           ctx.drawImage(
             marioJumpImage,
@@ -43,29 +50,25 @@ const Main = () => {
             this.width,
             this.height
           );
-        } else {
+        } 
+        // 서 있을 때
+        else {
           ctx.drawImage(marioImage, this.x, this.y, this.width, this.height);
         }
-
-        // ctx.fillStyle = "green";
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
       },
     };
 
-    // 장애물 설정
+    // 장애물 속성 설정
     class Goomba {
       constructor() {
-        this.x = 500;
-        this.y = 240;
+        this.x = 1600;
+        this.y = 490;
         this.width = 40;
         this.height = 40;
       }
       draw() {
-        // 이미지 그리기
+        // 캐릭터 이미지
         ctx.drawImage(goombaImage, this.x, this.y, this.width, this.height);
-
-        // ctx.fillStyle = "red";
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
       }
     }
 
@@ -74,15 +77,15 @@ const Main = () => {
     // 점프 시작부터 시간 측정
     var jumpTimer = 0;
 
-    // 1초마다 실행할 프레임 루프
+    // 1초마다 실행할 프레임 루프함수
     const loop = () => {
       requestRef.current = requestAnimationFrame(loop);
       timer++;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 300프레임 마다 장애물 배열에 생성
-      if (timer % 300 === 0) {
+      // 300프레임 마다 장애물을 배열에 생성
+      if (timer % 350 === 0) {
         var goomba = new Goomba();
         goombaArr.current.push(goomba);
       }
@@ -101,39 +104,42 @@ const Main = () => {
 
       // 러너 점프 동작
       if (jump == true) {
-        mario.y -= 4;
+        mario.y -= 5;
         jumpTimer++;
       }
-      // 점프가 종료되면 원위치로 돌아오기
-      else if (mario.y < 200) {
-        mario.y += 4;
-      }
-      // 점프한지 30프레임이 넘으면 점프 중단
+      // 점프한지 30프레임이 넘으면 점프 종료
       if (jumpTimer > 30) {
         jump = false;
         jumpTimer = 0;
+      }
+      // 점프가 종료되면 원위치로 돌아오기
+      if (jump == false) {
+        if (mario.y < 450) {
+          mario.y += 5;
+        }
       }
 
       mario.draw();
     };
 
     // 충돌 계산
-    function crash(mario, goomba) {
+    const crash = (mario, goomba) => {
       // x축 충돌 (장애물의 x위치 - (마리오 x위치 + 너비))
       var xGap = goomba.x - (mario.x + mario.width);
       // y축 충돌 (장애물의 y위치 - (마리오의 y위치 + 높이))
       var yGap = goomba.y - (mario.y + mario.height);
-      // 각 축이 맞닿으면 애니메이션 정지
-      if (xGap < 0 && yGap < 0) {
+      // 각 축이 맞닿으면 캔버스의 모든 그림 지우고 애니메이션 중지
+      if (xGap < -5 && yGap < 0) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         cancelAnimationFrame(requestRef.current);
       }
-    }
+    };
 
     var jump = false;
     // 스페이스바 누르면 점프 true
+    // 점프종료 상태일 때 & 마리오 위치가 원위치일 때만
     document.addEventListener("keydown", function (e) {
-      if (e.code === "Space") {
+      if (e.code === "Space" && !jump && mario.y == 450) {
         jump = true;
       }
     });
@@ -141,7 +147,20 @@ const Main = () => {
     loop();
   }, []);
 
-  return <canvas ref={canvasRef} />;
+  return (
+    <Background>
+      <canvas
+        ref={canvasRef}
+        style={{ width: "innerWidth", height: "innerHeight" }}
+      />
+    </Background>
+  );
 };
 
 export default Main;
+
+const Background = styled.div`
+  background-color: #202e91;
+  width: 100vw;
+  height: 100%;
+`;

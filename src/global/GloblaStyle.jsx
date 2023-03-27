@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
 
 body {
 min-height: 100vh;
+overflow-y: hidden;
+
 
   /* 영어폰트 전역적용 */
   font-family: logo;
