@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Game from "../components/Game";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,6 +10,7 @@ const Main = () => {
   return (
     <Background>
       <Context>
+        <Intro>INTRODUCTION</Intro>
         <Name>SEUNG YEON</Name>
         <div>
           <FontAwesomeIcon
@@ -53,14 +54,35 @@ const Context = styled.div`
   top: 30%;
   transform: translate(-50%, -50%);
   font-family: "title En";
+  color: ${(props) => props.theme.myYellow};
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
+// Introducing 튀어오르는 효과
+const bounce = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+const Intro = styled.span`
+  font-size: 3rem;
+  animation: ${bounce} 1.5s infinite;
+  text-shadow: 3px 3px ${(props) => props.theme.myNavy};
+`;
+
 const Name = styled.div`
   font-size: 8rem;
-  color: ${(props) => props.theme.myYellow};
   text-shadow: 2px 3px ${(props) => props.theme.Black},
     -3px 3px ${(props) => props.theme.Black},
     8px 8px ${(props) => props.theme.myOrange},
@@ -68,7 +90,6 @@ const Name = styled.div`
 `;
 
 const Job = styled.span`
-  color: ${(props) => props.theme.myYellow};
   font-size: 4rem;
   text-shadow: 4px 5px ${(props) => props.theme.myNavy};
   margin: 0 15px;

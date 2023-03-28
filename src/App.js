@@ -5,6 +5,9 @@ import theme from "./global/theme.js";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Main from "./pages/Main";
+import Introduction from "./pages/Introduction";
+import Projects from "./pages/Projects";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
+          <Route path="introduction" element={<Introduction />} />
+          <Route path="about" element={<About/>} />
+          <Route path="projects" element={<Projects />} />
           {/* <Route path="" element={</>} /> */}
           {/* <Route path="" element={</>} /> */}
         </Route>
