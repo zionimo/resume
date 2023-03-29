@@ -4,8 +4,8 @@
   src: url("./Nightydemo.otf");
 }
 
-/* 영어폰트 */
+/* 한글폰트 */
 @font-face {
-  font-family: En;
-  src: url("./Prociono.otf");
+  font-family: Kr;
+  src: url("./NotoSansKR-Regular.otf");
 }
