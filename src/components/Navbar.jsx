@@ -18,7 +18,7 @@ const Navbar = () => {
 export default Navbar;
 
 const Nav = styled.div`
-  background-color: ${theme.Nav_light};
+  background-color: ${theme.Navbar};
   margin: 0;
   box-sizing: border-box;
   position: fixed;
@@ -45,11 +45,11 @@ const StyledNavLink = styled(NavLink)`
   padding: 10px 10px 10px 10px;
   margin-top: 10px;
 
-  color: ${theme.Black};
+  color: ${theme.Title};
   &:hover {
-    color: ${theme.myYellow};
+    color: ${theme.Point};
   }
   &.active {
-    color: ${theme.myYellow};
+    color: ${theme.Point};
   }
 `;

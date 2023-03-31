@@ -9,7 +9,8 @@ body {
 min-height: 100vh;
 overflow-y: hidden;
 /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
- padding-right: 5rem;
+ padding: 0 5rem 0 0 ;
+ margin: 0;
 
 /* 한글폰트 전역적용 */
 font-family: "Kr";
