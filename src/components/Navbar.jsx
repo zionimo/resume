@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import theme from "../global/theme";
 
 const Navbar = () => {
   return (
     <Nav>
       <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="introduction">Intro</NavLink>
-        <NavLink to="about">About</NavLink>
-        <NavLink to="projects">Projects</NavLink>
+        <StyledNavLink to="/">Home</StyledNavLink>
+        <StyledNavLink to="introduction">Intro</StyledNavLink>
+        <StyledNavLink to="about">About</StyledNavLink>
+        <StyledNavLink to="projects">Projects</StyledNavLink>
       </div>
     </Nav>
   );
@@ -17,7 +18,7 @@ const Navbar = () => {
 export default Navbar;
 
 const Nav = styled.div`
-  background-color: ${(props) => props.theme.Nav_light};
+  background-color: ${theme.Nav_light};
   margin: 0;
   box-sizing: border-box;
   position: fixed;
@@ -34,14 +35,21 @@ const Nav = styled.div`
 
     writing-mode: vertical-lr;
   }
+`;
 
-  div > * {
-    text-decoration: none;
-    color: ${(props) => props.theme.Black};
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    padding: 10px 10px 10px 10px;
-    margin-top: 10px;
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
+
+  color: ${theme.Black};
+  &:hover {
+    color: ${theme.myYellow};
+  }
+  &.active {
+    color: ${theme.myYellow};
   }
 `;
