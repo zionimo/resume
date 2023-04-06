@@ -26,6 +26,7 @@ const Nav = styled.div`
   right: 0;
   width: 5rem;
   height: 100vh;
+  padding: 0;
 
   div {
     display: flex;
@@ -38,14 +39,15 @@ const Nav = styled.div`
 `;
 
 const StyledNavLink = styled(NavLink)`
+  font-family: "sub En";
   text-decoration: none;
   font-weight: bold;
   font-size: 1.5rem;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   margin-top: 10px;
 
   color: ${theme.Title};
+  transition: color 0.3s ease;
   &:hover {
     color: ${theme.Point};
   }

@@ -1,8 +1,14 @@
-/* 폰트 */
+/* 영문폰트 */
 @font-face {
   font-family: title En;
   src: url("./ArchivoBlack-Regular.ttf");
 }
+
+@font-face {
+  font-family: sub En;
+  src: url("./Jost-VariableFont_wght.ttf");
+}
+
 
 /* 한글폰트 */
 @font-face {

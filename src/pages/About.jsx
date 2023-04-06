@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <>
+    <div>
       <h3>Skills</h3>
       <ul>
         <li>
@@ -30,7 +30,7 @@ const About = () => {
           </span>
         </li>
       </ul>
-    </>
+    </div>
   );
 };
 

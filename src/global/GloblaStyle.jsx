@@ -1,19 +1,41 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
+}
+
 *, *::before, *::after {
-  box-sizing: border-box;
+  box-sizing: inherit;
 }
 
 body {
-min-height: 100vh;
-overflow-y: hidden;
-/* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
- padding: 0 5rem 0 0 ;
- margin: 0;
+  /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
+  padding: 0 5rem 0 0 ;
+  margin: 0;
+  
+  /* 한글폰트 전역적용 */
+  font-family: "Kr";
+  line-height: 30px;
+  font-size: 16px;
+}
 
-/* 한글폰트 전역적용 */
-font-family: "Kr";
-}`;
+#wrap {
+  height: 100%;
+  width: 100%;
+  min-width: 770px;
+  box-sizing: border-box;
+  
+  .body-container > div {
+  padding: 40px 100px 0 100px;
+  margin: 0;
+}
+}
+
+
+`;
 
 export default GlobalStyle;
