@@ -29,6 +29,13 @@ const About = () => {
             수 있습니다.
           </span>
         </li>
+
+        <li>
+          <h4>Git</h4>
+          <span>
+          프로젝트 코드 관리, add, commit, pull, push, branch 기능을 사용할 수 있습니다.
+          </span>
+        </li>
       </ul>
     </div>
   );

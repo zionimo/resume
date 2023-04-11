@@ -7,7 +7,7 @@ const Introduction = () => {
     <Container>
       <article>
         <section>
-          <img src="" alt="" style={{ width: "180px", height: "240px" }} />
+          <Profile src="" alt="" />
         </section>
 
         <section>
@@ -31,11 +31,14 @@ const Introduction = () => {
       </article>
 
       <article>
-        <h3>반갑습니다!</h3>
+        <h2>반갑습니다!</h2>
         <p>
-          저는 프론트엔드 개발자를 희망하는 전승연입니다. 제가 배운 기술로
-          실용가능한 기능을 구현하는 과정이 재미있습니다. 배움과 새로운 시도를
-          즐기며 성장하는 프론트엔드 개발자가 되겠습니다.
+          프론트엔드 개발자 지망생 전승연입니다. 뭔가를 스스로 만드는 것과 잘
+          정돈되어 꾸며진 것을 좋아합니다. 이 모든 경험과 사용자와의 밀접한
+          관계를 가질 수 있는 프론트엔드 직무에 매력을 느껴 개발자를 꿈꾸게
+          되었습니다. 제가 배운 기술로 직접 실용가능한 기능을 구현하는 과정이
+          재미있습니다. 가까운 목표는 1인분 하는 개발자가 되는 것이며 계속해서
+          배움과 새로운 시도를 즐기는 성장형 프론트엔드 개발자가 되고 싶습니다.
         </p>
       </article>
     </Container>
@@ -47,12 +50,20 @@ export default Introduction;
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
+  justify-items: center;
 `;
+
+const Profile = styled.img`
+  width: 300px;
+  height: 400px;
+  margin-bottom: 30px;
+`;
+
 const Button = styled.div`
   background-color: ${theme.InactiveBtn};
-  width: 13rem;
-  height: 35px;
-
+  width: 300px;
+  height: 40px;
+  text-align: center;
   * {
     text-decoration: none;
     color: ${theme.Title};

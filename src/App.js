@@ -1,8 +1,11 @@
 import "./App.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./global/GloblaStyle";
 import theme from "./global/theme.js";
 import { Routes, Route } from "react-router-dom";
+
 import Layout from "./pages/Layout";
 import Main from "./pages/Main";
 import Introduction from "./pages/Introduction";
