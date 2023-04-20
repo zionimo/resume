@@ -11,6 +11,7 @@ import Main from "./pages/Main";
 import Introduction from "./pages/Introduction";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
+import ProjectDetail from "./pages/ProjectDetail";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="introduction" element={<Introduction />} />
           <Route path="about" element={<About />} />
           <Route path="projects" element={<Projects />} />
-          {/* <Route path="" element={</>} /> */}
+          <Route path="projects/:id" element={<ProjectDetail />} />
           {/* <Route path="" element={</>} /> */}
         </Route>
       </Routes>
