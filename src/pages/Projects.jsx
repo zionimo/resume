@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import styled from "styled-components";
 import theme from "../global/theme";
@@ -25,7 +25,7 @@ const Projects = () => {
     return () => {
       document.removeEventListener("wheel", handleSlider);
     };
-  }, []);
+  }, [sliderRef.current]);
 
   const settings = {
     dots: false,
@@ -47,6 +47,10 @@ const Projects = () => {
       description:
         "사용자가 원하는 사진, 문구를 이용하여 티셔츠 디자인을 커스터마이징 할 수 있는 서비스를 제공하는 사이트입니다.",
       duration: "2022.11.16 ~ 2023.01.06",
+      durationDetail: "2022년 11월 16일 ~ 2023년 01월 06일",
+      language: "",
+      link: "https://project-moti.netlify.app/",
+      task: "",
     },
     {
       id: 2,
@@ -56,6 +60,10 @@ const Projects = () => {
       description:
         "보고계시는 이 사이트입니다. 저를 소개하기 위해 제작하였습니다.",
       duration: "2023.03.20 ~ 2023.04.25",
+      durationDetail: "2023년 03월 20일 ~ 2023년 04월 25일",
+      language: "",
+      link: "https://zionimo.github.io/resume/",
+      task: "",
     },
     {
       id: 3,
@@ -65,12 +73,18 @@ const Projects = () => {
       description:
         "독서 기록 어플리케이션 '북적북적'를 참고하여 제작중인 어플입니다. RestAPI를 활용하고 데이터 관리 공부를 위해 제작중입니다. 조금만 기다려 주세요!",
       duration: "2023.03 ~",
+      durationDetail: "",
+      language: "",
+      link: "",
+      task: "",
     },
   ];
 
-  const goToDetail = () => {
-    navigate("/projects/" + projectList.id);
-  };
+  // const goToDetail = (id, name) => {
+  //   navigate(`/projects/${name}`, { state: { id: id, name: name } });
+
+  // console.log(projectList.id);
+  // };
 
   return (
     <Wrapper>
@@ -87,7 +101,11 @@ const Projects = () => {
 
             {/* 제작중인 사이트는 버튼 노출되지 않음 */}
             {project.id !== 3 ? (
-              <Detail onClick={goToDetail}>More View</Detail>
+              <Detail>
+                <Link to={"/projects/" + project.id} state={projectList}>
+                  More View
+                </Link>
+              </Detail>
             ) : undefined}
           </div>
         ))}
@@ -149,5 +167,6 @@ const Detail = styled.button`
   :hover {
     background-color: ${theme.ActiveBtn};
     color: ${theme.White};
+    cursor: pointer;
   }
 `;
