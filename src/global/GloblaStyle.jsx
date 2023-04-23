@@ -22,6 +22,7 @@ body {
   font-family: "Kr";
   line-height: 30px;
   font-size: 1.1rem;
+
 }
 
 #wrap {

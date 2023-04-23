@@ -41,6 +41,7 @@ const Projects = () => {
   const projectList = [
     {
       id: 1,
+      type: "팀 프로젝트",
       img: require("../img/MOTI.jpg"),
       name: "MOTI",
       title: "모두의 티셔츠, 모티!",
@@ -48,12 +49,46 @@ const Projects = () => {
         "사용자가 원하는 사진, 문구를 이용하여 티셔츠 디자인을 커스터마이징 할 수 있는 서비스를 제공하는 사이트입니다.",
       duration: "2022.11.16 ~ 2023.01.06",
       durationDetail: "2022년 11월 16일 ~ 2023년 01월 06일",
-      language: "",
+      language: "React, JavaScript, HTML, CSS ",
       link: "https://project-moti.netlify.app/",
-      task: "",
+      taskList: [
+        {
+          id: 1,
+          skill: "Redux",
+          context:
+            "Redux를 사용하여 전역상태를 중앙집중적으로 관리하여 효과적인 상태관리를 함 ",
+        },
+        {
+          id: 2,
+          skill: "react-persist",
+          context:
+            "local storage를 사용하여 새로고침, 페이지 이동 등의 상황에도 리뷰 데이터가 유지될 수 있게 함",
+        },
+        {
+          id: 3,
+          skill: "react-router",
+          context:
+            "SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환을 위해 사용함",
+        },
+
+        {
+          id: 4,
+          skill: "react-slick",
+          context:
+            "메인페이지에 적용하여 매끄러운 상하 스크롤 슬라이더를 구현함.",
+        },
+        {
+          id: 6,
+          skill: "CSS",
+          context:
+            "flex/grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있음",
+        },
+      ],
+      // "메인페이지, 리뷰작성 기능, navbar, footer 제작 담당 "
     },
     {
       id: 2,
+      type: "개인 프로젝트",
       img: require("../img/resume.jpg"),
       name: "RESUME",
       title: "제가 궁금하신가요?",
@@ -61,12 +96,18 @@ const Projects = () => {
         "보고계시는 이 사이트입니다. 저를 소개하기 위해 제작하였습니다.",
       duration: "2023.03.20 ~ 2023.04.25",
       durationDetail: "2023년 03월 20일 ~ 2023년 04월 25일",
-      language: "",
+      language: "React, JavaScript, HTML, CSS, styled-components ",
       link: "https://zionimo.github.io/resume/",
-      task: "",
+      taskList: [
+        { id: 1, skill: "react-router", context: "사용 할 줄 암" },
+        { id: 2, skill: "react-slick", context: "사용 할 줄 암2" },
+        { id: 3, skill: "MUI", context: "사용 할 줄 암2" },
+        { id: 4, skill: "styled-componets", context: "사용 할 줄 암2" },
+      ],
     },
     {
       id: 3,
+      type: "개인 프로젝트",
       img: require("../img/bookggureomi.jpg"),
       name: "BOOK GGUREOMI",
       title: "내가 꾸리는 책꾸러미! 북꾸러미",
@@ -76,15 +117,9 @@ const Projects = () => {
       durationDetail: "",
       language: "",
       link: "",
-      task: "",
+      taskList: [],
     },
   ];
-
-  // const goToDetail = (id, name) => {
-  //   navigate(`/projects/${name}`, { state: { id: id, name: name } });
-
-  // console.log(projectList.id);
-  // };
 
   return (
     <Wrapper>
@@ -102,7 +137,11 @@ const Projects = () => {
             {/* 제작중인 사이트는 버튼 노출되지 않음 */}
             {project.id !== 3 ? (
               <Detail>
-                <Link to={"/projects/" + project.id} state={projectList}>
+                <Link
+                  to={"/projects/" + project.id}
+                  state={projectList}
+                  className="link"
+                >
                   More View
                 </Link>
               </Detail>
@@ -134,6 +173,7 @@ const Image = styled.img`
 `;
 
 const Name = styled.p`
+  font-family: "sub En";
   font-size: 2.1rem;
   font-weight: bold;
   margin-bottom: 1rem;
@@ -159,14 +199,19 @@ const Detail = styled.button`
   border: none;
   background-color: ${theme.InactiveBtn};
 
-  color: ${theme.Title};
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px 30px;
+  .link {
+    color: ${theme.Title};
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 45px;
+  }
 
   :hover {
     background-color: ${theme.ActiveBtn};
-    color: ${theme.White};
     cursor: pointer;
+
+    .link {
+      color: ${theme.White};
+    }
   }
 `;
