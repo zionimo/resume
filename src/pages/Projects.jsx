@@ -84,7 +84,6 @@ const Projects = () => {
             "flex / grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있으며 반응형 메뉴리스트를 구현함",
         },
       ],
-      // "메인페이지, 리뷰작성 기능, navbar, footer 제작 담당 "
     },
     {
       id: 2,
@@ -103,7 +102,7 @@ const Projects = () => {
           id: 1,
           skill: "React-router",
           context:
-          "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
+            "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
         },
         {
           id: 2,
@@ -132,7 +131,7 @@ const Projects = () => {
       name: "BOOK GGUREOMI",
       title: "내가 꾸리는 책꾸러미! 북꾸러미",
       description:
-        "독서 기록 어플리케이션 '북적북적'를 참고하여 제작중인 어플입니다. RestAPI를 활용하고 데이터 관리 공부를 위해 제작중입니다. 조금만 기다려 주세요!",
+        "독서 기록 어플리케이션 '북적북적'를 참고하여 제작 중인 개인 프로젝트입니다. React를 사용하였으며, RestAPI 활용과 데이터 관리 공부를 위해 제작중입니다. 조금만 기다려 주세요!",
       duration: "2023.03 ~",
       durationDetail: "",
       language: "",
@@ -141,30 +140,52 @@ const Projects = () => {
     },
   ];
 
+  const goToDetail = (projectId) => {
+    if (projectId < 3) {
+      navigate(`/projects/${projectId}`, { state: projectList });
+    }
+  };
+
   return (
     <Wrapper>
       <Slider {...settings} ref={sliderRef}>
         {projectList.map((project, index) => (
           <div key={index}>
-            <Image src={project.img} alt="index" />
-            <Name>{project.name}</Name>
-            <Title>{project.title}</Title>
-            <Context>
+            <ImageWrapper
+              onClick={() => goToDetail(project.id)}
+              style={{ cursor: project.id < 3 ? "pointer" : "default" }}
+            >
+              <Image src={project.img} alt="index" />
+              {project.id < 3 ? (
+                <ImageText>
+                  <span>{project.name}</span>
+                  <span>{project.duration}</span>
+                </ImageText>
+              ) : (
+                <ImageText>
+                  <span>{project.name}</span>
+                  <span>현재 준비 중입니다.👩🏻‍💻</span>
+                </ImageText>
+              )}
+            </ImageWrapper>
+
+            <div>
+              <Name>{project.name}</Name>
+              <Title>{project.title}</Title>
+            </div>
+
+            <ContextWrapper>
               <span>{project.description}</span>
               <span>{project.duration}</span>
-            </Context>
+            </ContextWrapper>
 
             {/* 제작중인 사이트는 버튼 노출되지 않음 */}
-            {project.id !== 3 ? (
-              <Detail>
-                <Link
-                  to={"/projects/" + project.id}
-                  state={projectList}
-                  className="link"
-                >
+            {project.id < 3 ? (
+              <DetailBtn>
+                <Link to={"/projects/" + project.id} state={projectList}>
                   More View
                 </Link>
-              </Detail>
+              </DetailBtn>
             ) : undefined}
           </div>
         ))}
@@ -181,6 +202,7 @@ const Wrapper = styled.div`
   height: 100vh;
   padding: 0px;
   margin: 0px;
+  box-sizing: border-box;
 
   .slick-slide {
     /* 아이템 간 간격 조절 */
@@ -188,8 +210,49 @@ const Wrapper = styled.div`
   }
 `;
 
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+`;
+
 const Image = styled.img`
   max-width: 100%;
+`;
+
+const ImageText = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; //수평 가운데 정렬
+  align-items: center; // 수직 가운데 설정
+
+  > * {
+    color: white;
+    opacity: 0;
+    transform: translateY(-20px); // hover 전에는 20px 위로 이동
+    transition: opacity 0.4s, transform 0.3s;
+  }
+
+  span:first-child {
+    font-family: "sub En";
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  :hover {
+    background-color: #000000bb; // 호버시 어둡게 반투명해지는 효과
+    > * {
+      opacity: 1;
+      transform: translateY(0); /* 호버시 10px 아래로 이동하여 나타나도록 함 */
+    }
+  }
 `;
 
 const Name = styled.p`
@@ -205,21 +268,27 @@ const Title = styled.p`
   margin-bottom: 1rem;
 `;
 
-const Context = styled.div`
-  height: 130px;
+const ContextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   margin-bottom: 1rem;
+
+  span:first-child {
+    height: 110px; // 설명글&제작기간 래퍼 높이 설정
+  }
+
+  span:last-child {
+    font-size: 1rem; // 제작기간 글씨크기 설정
+  }
 `;
 
-const Detail = styled.button`
+const DetailBtn = styled.button`
   width: 11rem;
   height: 40px;
   border: none;
   background-color: ${theme.InactiveBtn};
 
-  .link {
+  a {
     color: ${theme.Title};
     text-decoration: none;
     font-weight: bold;
@@ -230,7 +299,7 @@ const Detail = styled.button`
     background-color: ${theme.ActiveBtn};
     cursor: pointer;
 
-    .link {
+    a {
       color: ${theme.White};
     }
   }

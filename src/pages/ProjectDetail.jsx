@@ -29,6 +29,7 @@ const ProjectDetail = () => {
   console.log(taskList);
 
   // 항목의 개별적 열림/닫힘 상태 관리
+  // handleClick 함수가 호출될 때, id값을 비교하여 같으면 null로 설정, 다르면 id값을 설정
   const handleClick = (id) => {
     setOpenId(openId === id ? null : id);
   };
