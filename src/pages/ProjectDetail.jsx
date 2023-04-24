@@ -30,7 +30,7 @@ const ProjectDetail = () => {
 
   // 항목의 개별적 열림/닫힘 상태 관리
   const handleClick = (id) => {
-    setOpenId(id);
+    setOpenId(openId === id ? null : id);
   };
 
   return (

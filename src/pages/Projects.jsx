@@ -62,26 +62,26 @@ const Projects = () => {
           id: 2,
           skill: "React-persist",
           context:
-            "local storage를 사용하여 새로고침, 페이지 이동 등의 상황에도 리뷰 데이터가 유지될 수 있게 함",
+            "local storage를 활용하여 새로고침, 페이지 이동 등의 상황에도 리뷰 데이터가 유지될 수 있게 함",
         },
         {
           id: 3,
           skill: "React-router",
           context:
-            "SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환을 위해 사용함",
+            "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
         },
 
         {
           id: 4,
           skill: "React-slick",
           context:
-            "메인페이지에 적용하여 매끄러운 상하 스크롤 슬라이더를 구현함.",
+            "React-slick의 세팅값을 조절하여 메인페이지의 매끄러운 상하 스크롤 슬라이더를 구현함",
         },
         {
           id: 6,
           skill: "CSS",
           context:
-            "flex / grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있음",
+            "flex / grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있으며 반응형 메뉴리스트를 구현함",
         },
       ],
       // "메인페이지, 리뷰작성 기능, navbar, footer 제작 담당 "
@@ -99,10 +99,30 @@ const Projects = () => {
       language: "React, JavaScript, HTML, CSS, styled-components ",
       link: "https://zionimo.github.io/resume/",
       taskList: [
-        { id: 1, skill: "React-router", context: "사용 할 줄 암" },
-        { id: 2, skill: "React-slick", context: "사용 할 줄 암2" },
-        { id: 3, skill: "MUI", context: "사용 할 줄 암2" },
-        { id: 4, skill: "styled-componets", context: "사용 할 줄 암2" },
+        {
+          id: 1,
+          skill: "React-router",
+          context:
+          "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
+        },
+        {
+          id: 2,
+          skill: "React-slick",
+          context:
+            "프로젝트 리스트 나열에 필요한 세팅값을 조절하고 map() 함수를 함꼐 사용하여 데이터 배열을 순회하는 좌우 스크롤 슬라이더를 구현함",
+        },
+        {
+          id: 3,
+          skill: "MUI",
+          context:
+            "개발시간을 단축시킬 수 있고 세련되고 다양한 디자인을 제공하는 MUI 라이브러리를 커스터마이징하여 사용할 수 있음",
+        },
+        {
+          id: 4,
+          skill: "styled-componets",
+          context:
+            "컴포넌트 단위의 재사용 가능한 스타일링과 스타일 충돌방지에 이점을 느껴 사용함. CSS-in-JS 방식이므로 큰 규모의 프로젝트에서는 속도와 성능에 영향을 미칠 수 있음을 인지하고 프로젝트 스타일에 따라 적절히 사용할 예정",
+        },
       ],
     },
     {
