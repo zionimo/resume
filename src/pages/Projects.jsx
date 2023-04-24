@@ -60,20 +60,20 @@ const Projects = () => {
         },
         {
           id: 2,
-          skill: "react-persist",
+          skill: "React-persist",
           context:
             "local storage를 사용하여 새로고침, 페이지 이동 등의 상황에도 리뷰 데이터가 유지될 수 있게 함",
         },
         {
           id: 3,
-          skill: "react-router",
+          skill: "React-router",
           context:
             "SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환을 위해 사용함",
         },
 
         {
           id: 4,
-          skill: "react-slick",
+          skill: "React-slick",
           context:
             "메인페이지에 적용하여 매끄러운 상하 스크롤 슬라이더를 구현함.",
         },
@@ -81,7 +81,7 @@ const Projects = () => {
           id: 6,
           skill: "CSS",
           context:
-            "flex/grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있음",
+            "flex / grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있음",
         },
       ],
       // "메인페이지, 리뷰작성 기능, navbar, footer 제작 담당 "
@@ -99,8 +99,8 @@ const Projects = () => {
       language: "React, JavaScript, HTML, CSS, styled-components ",
       link: "https://zionimo.github.io/resume/",
       taskList: [
-        { id: 1, skill: "react-router", context: "사용 할 줄 암" },
-        { id: 2, skill: "react-slick", context: "사용 할 줄 암2" },
+        { id: 1, skill: "React-router", context: "사용 할 줄 암" },
+        { id: 2, skill: "React-slick", context: "사용 할 줄 암2" },
         { id: 3, skill: "MUI", context: "사용 할 줄 암2" },
         { id: 4, skill: "styled-componets", context: "사용 할 줄 암2" },
       ],

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
-import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -15,7 +14,7 @@ const ProjectDetail = () => {
   const { id } = useParams(); // url에서 name 추출
   const project = projectList.find((p) => p.id == id); // ProjectList와 url의 name 값을 find()로 대조해 찾기
 
-  const [open, setOpen] = useState(false);
+  const [openId, setOpenId] = useState(false);
 
   const {
     type,
@@ -29,8 +28,9 @@ const ProjectDetail = () => {
   } = project; // 구조 분해 할당
   console.log(taskList);
 
-  const handleClick = () => {
-    setOpen(!open);
+  // 항목의 개별적 열림/닫힘 상태 관리
+  const handleClick = (id) => {
+    setOpenId(id);
   };
 
   return (
@@ -66,11 +66,11 @@ const ProjectDetail = () => {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton onClick={handleClick}>
+              <ListItemButton onClick={() => handleClick(task.id)}>
                 <ListItemText primary={task.skill} />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                {openId === task.id ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              <Collapse in={openId === task.id} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 2 }}>
                     <ListItemText primary={task.context} />
