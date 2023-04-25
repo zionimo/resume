@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "../global/theme";
 
 const GlobalStyle = createGlobalStyle`
 html {
@@ -12,8 +13,10 @@ html {
 }
 
 body {
-  /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: 0 5rem 0 0 ;
+  /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
   margin: 0;
   word-break: keep-all; // 단어 단위로 줄바꿈
   /* word-break: break-all; // 문자 단위로 줄바꿈 */
@@ -22,7 +25,8 @@ body {
   font-family: "Kr";
   line-height: 30px;
   font-size: 1.1rem;
-
+  color: ${theme.Black};
+  
 }
 
 #wrap {
@@ -30,12 +34,10 @@ body {
   width: 100%;
   min-width: 770px;
   box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: auto;
 
 
   .body-container > div {
-  padding: 40px 100px 0 100px;
+  padding: 80px 10rem 80px 100px;
   margin: 0;
 }
 }

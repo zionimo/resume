@@ -12,21 +12,30 @@ import Introduction from "./pages/Introduction";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
 import ProjectDetail from "./pages/ProjectDetail";
+import {
+  ThemeProvider as MuiThemeProvider,
+  createTheme,
+} from "@mui/material/styles";
+
+// MUI 컴포넌트에도 글씨 전역설정 적용
+const MUItheme = createTheme({ typography: { fontFamily: "Kr",fontSize: '1.1rem' } });
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Main />} />
-          <Route path="introduction" element={<Introduction />} />
-          <Route path="about" element={<About />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="projects/:id" element={<ProjectDetail />} />
-          {/* <Route path="" element={</>} /> */}
-        </Route>
-      </Routes>
+      <MuiThemeProvider theme={MUItheme}>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Main />} />
+            <Route path="introduction" element={<Introduction />} />
+            <Route path="about" element={<About />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="projects/:id" element={<ProjectDetail />} />
+            {/* <Route path="" element={</>} /> */}
+          </Route>
+        </Routes>
+      </MuiThemeProvider>
     </ThemeProvider>
   );
 }

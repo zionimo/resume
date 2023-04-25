@@ -68,7 +68,7 @@ const Projects = () => {
           id: 3,
           skill: "React-router",
           context:
-            "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
+            "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환을 할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
         },
 
         {
@@ -92,7 +92,7 @@ const Projects = () => {
       name: "RESUME",
       title: "제가 궁금하신가요?",
       description:
-        "보고계시는 이 사이트입니다. 저를 소개하기 위해 제작하였습니다.",
+        "보고계시는 현재 사이트입니다. 저를 소개하기 위해 제작하였습니다.",
       duration: "2023.03.20 ~ 2023.04.25",
       durationDetail: "2023년 03월 20일 ~ 2023년 04월 25일",
       language: "React, JavaScript, HTML, CSS, styled-components ",
@@ -102,7 +102,7 @@ const Projects = () => {
           id: 1,
           skill: "React-router",
           context:
-            "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
+            "네비게이션 SPA(Single Page Application)방식을 통해 페이지간의 빠른 전환을 할 수 있으며 <Outlet/>을 사용하여 중첩된 라우트를 구현할 수 있음",
         },
         {
           id: 2,

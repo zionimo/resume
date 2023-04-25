@@ -1,5 +1,5 @@
 const theme = {
-  Black: " #000000", // 검정색
+  Black: "#111827", // 검정색
   White: " #FFFFFF", // 흰색
   Navbar: "#F3F5F4", // 아주 연한 쑥색
   Title: "#4F6F5C", // 쑥색

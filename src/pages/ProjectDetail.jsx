@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import theme from "../global/theme";
 import styled from "styled-components";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -35,70 +36,122 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div>
-      <div>
-        <p>{type}</p>
+    <Wrapper>
+      <InfoWrapper>
         <Name>{name}</Name>
         <Title>{title}</Title>
-        <p>{description}</p>
-      </div>
+        <Description>{description}</Description>
+      </InfoWrapper>
 
       <Article>
-        <dt>개발 기간</dt>
-        <dd>{durationDetail}</dd>
+        <Term>유형</Term>
+        <dd>{type}</dd>
 
-        <dt>링크</dt>
+        <Term>링크</Term>
         <dd>
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <SiteLink href={link} target="_blank" rel="noopener noreferrer">
             사이트로 이동!
-          </a>
+          </SiteLink>
         </dd>
 
-        <dt>개발 언어</dt>
+        <Term>개발 기간</Term>
+        <dd>{durationDetail}</dd>
+
+        <Term>개발 언어</Term>
         <dd>{language}</dd>
 
-        <dt>담당 업무</dt>
+        <Term>담당 업무</Term>
         <dd>
           {/* mui의 Nasted List 활용 */}
           {taskList.map((task) => (
             <List
               key={task.id}
-              sx={{ width: "100%", bgcolor: "background.paper" }}
+              sx={{
+                width: "100%",
+                maxWidth: 600,
+                bgcolor: "background.paper",
+                boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.3)",
+                padding: "0px 0px 0px 0px",
+                margin: "4px 0px",
+              }}
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton onClick={() => handleClick(task.id)}>
+              <ListItemButton
+                onClick={() => handleClick(task.id)}
+              >
                 <ListItemText primary={task.skill} />
                 {openId === task.id ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={openId === task.id} timeout="auto" unmountOnExit>
+              <Collapse in={openId === task.id} timeout="auto" unmountOnExit >
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 2 }}>
+                  <ListItemText sx={{ pl: 2, margin: "20px 0px"}}>
                     <ListItemText primary={task.context} />
-                  </ListItemButton>
+                  </ListItemText>
                 </List>
               </Collapse>
             </List>
           ))}
         </dd>
       </Article>
-    </div>
+    </Wrapper>
   );
 };
 
 export default ProjectDetail;
 
+const Wrapper = styled.div`
+  overflow-y: auto;
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+`;
+
+const InfoWrapper = styled.div`
+  width: 100%;
+  padding: 50px 0 50px 0;
+  margin: 0 0 60px 0;
+  border-top: 2px solid ${theme.SubTitle};
+  border-bottom: 2px solid ${theme.SubTitle};
+`;
+
 const Name = styled.p`
   font-family: "sub En";
-  font-size: 2.1rem;
+  font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin: 0 0 20px 0;
 `;
+
 const Title = styled.p`
   font-size: 1.3rem;
+  margin: 0 0 50px 0;
   font-weight: bold;
-  margin-bottom: 1rem;
 `;
+
+const Description = styled.p`
+  margin: 0;
+`;
+
 const Article = styled.dl`
   display: grid;
+  grid-template-columns: 0.3fr 2fr;
+
+  > * {
+    margin: 0 0 20px 0;
+  }
+`;
+
+const Term = styled.dt`
+  color: ${theme.SubTitle};
+`;
+
+const SiteLink = styled.a`
+  font-weight: bold;
+  color: ${theme.Title};
+
+  :hover {
+    color: ${theme.Point};
+  }
 `;
