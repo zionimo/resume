@@ -8,6 +8,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { Wrapper } from "../global/MyStyles";
 
 const ProjectDetail = () => {
   const location = useLocation();
@@ -27,7 +28,6 @@ const ProjectDetail = () => {
     language,
     taskList,
   } = project; // 구조 분해 할당
-  console.log(taskList);
 
   // 항목의 개별적 열림/닫힘 상태 관리
   // handleClick 함수가 호출될 때, id값을 비교하여 같으면 null로 설정, 다르면 id값을 설정
@@ -77,15 +77,13 @@ const ProjectDetail = () => {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton
-                onClick={() => handleClick(task.id)}
-              >
+              <ListItemButton onClick={() => handleClick(task.id)}>
                 <ListItemText primary={task.skill} />
                 {openId === task.id ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={openId === task.id} timeout="auto" unmountOnExit >
+              <Collapse in={openId === task.id} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemText sx={{ pl: 2, margin: "20px 0px"}}>
+                  <ListItemText sx={{ pl: 2, margin: "20px 0px" }}>
                     <ListItemText primary={task.context} />
                   </ListItemText>
                 </List>
@@ -100,14 +98,14 @@ const ProjectDetail = () => {
 
 export default ProjectDetail;
 
-const Wrapper = styled.div`
-  overflow-y: auto;
-  width: 100vw;
-  height: 100vh;
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-`;
+// const Wrapper = styled.div`
+//   overflow-y: auto;
+//   width: 100vw;
+//   height: 100vh;
+//   padding: 0px;
+//   margin: 0px;
+//   box-sizing: border-box;
+// `;
 
 const InfoWrapper = styled.div`
   width: 100%;

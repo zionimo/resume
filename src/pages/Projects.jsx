@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import styled from "styled-components";
 import theme from "../global/theme";
+import { Wrapper, Header, Button } from "../global/MyStyles";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Projects = () => {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
+    speed: 400,
     slidesToShow: 2,
     slidesToScroll: 1,
     swipeToSlide: true,
@@ -147,7 +148,11 @@ const Projects = () => {
   };
 
   return (
-    <Wrapper>
+    <ProjectWrapper>
+      <div>
+        <Header>PROJECTS</Header>
+      </div>
+
       <Slider {...settings} ref={sliderRef}>
         {projectList.map((project, index) => (
           <div key={index}>
@@ -181,28 +186,22 @@ const Projects = () => {
 
             {/* 제작중인 사이트는 버튼 노출되지 않음 */}
             {project.id < 3 ? (
-              <DetailBtn>
+              <Button>
                 <Link to={"/projects/" + project.id} state={projectList}>
                   More View
                 </Link>
-              </DetailBtn>
+              </Button>
             ) : undefined}
           </div>
         ))}
       </Slider>
-    </Wrapper>
+    </ProjectWrapper>
   );
 };
 
 export default Projects;
 
-const Wrapper = styled.div`
-  overflow-y: auto;
-  width: 100vw;
-  height: 100vh;
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
+const ProjectWrapper = styled(Wrapper)`
 
   .slick-slide {
     /* 아이템 간 간격 조절 */
@@ -218,6 +217,7 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   max-width: 100%;
+  margin-bottom: 15px;
 `;
 
 const ImageText = styled.div`
@@ -240,6 +240,7 @@ const ImageText = styled.div`
   }
 
   span:first-child {
+    // 이미지에 호버시 뜨는 프로젝트명
     font-family: "sub En";
     font-weight: bold;
     font-size: 2rem;
@@ -259,13 +260,13 @@ const Name = styled.p`
   font-family: "sub En";
   font-size: 2.1rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin: 0 0 15px 0;
 `;
 
 const Title = styled.p`
   font-size: 1.3rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin: 0 0 15px 0;
 `;
 
 const ContextWrapper = styled.div`
@@ -274,33 +275,10 @@ const ContextWrapper = styled.div`
   margin-bottom: 1rem;
 
   span:first-child {
-    height: 110px; // 설명글&제작기간 래퍼 높이 설정
+    height: 90px; // 설명글&제작기간 래퍼 높이 설정
   }
 
   span:last-child {
     font-size: 1rem; // 제작기간 글씨크기 설정
-  }
-`;
-
-const DetailBtn = styled.button`
-  width: 11rem;
-  height: 40px;
-  border: none;
-  background-color: ${theme.InactiveBtn};
-
-  a {
-    color: ${theme.Title};
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 45px;
-  }
-
-  :hover {
-    background-color: ${theme.ActiveBtn};
-    cursor: pointer;
-
-    a {
-      color: ${theme.White};
-    }
   }
 `;

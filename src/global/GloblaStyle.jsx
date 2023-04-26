@@ -21,6 +21,7 @@ body {
   word-break: keep-all; // 단어 단위로 줄바꿈
   /* word-break: break-all; // 문자 단위로 줄바꿈 */
   
+  
   /* 한글폰트 전역적용 */
   font-family: "Kr";
   line-height: 30px;
@@ -37,7 +38,7 @@ body {
 
 
   .body-container > div {
-  padding: 80px 10rem 80px 100px;
+  
   margin: 0;
 }
 }

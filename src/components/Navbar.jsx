@@ -3,13 +3,21 @@ import { NavLink } from "react-router-dom";
 import theme from "../global/theme";
 
 const Navbar = () => {
+  const navArr = [
+    { id: 1, content: "HOME", component: "/" },
+    { id: 1, content: "INTRO", component: "introduction" },
+    { id: 1, content: "ABOUT", component: "about" },
+    { id: 1, content: "PROJECTS", component: "projects" },
+  ];
+
   return (
     <Nav>
       <div>
-        <StyledNavLink to="/">Home</StyledNavLink>
-        <StyledNavLink to="introduction">Intro</StyledNavLink>
-        <StyledNavLink to="about">About</StyledNavLink>
-        <StyledNavLink to="projects">Projects</StyledNavLink>
+        {navArr.map((arr, index) => (
+          <StyledNavLink key={arr.id} to={arr.component}>
+            {arr.content}
+          </StyledNavLink>
+        ))}
       </div>
     </Nav>
   );
@@ -42,9 +50,9 @@ const StyledNavLink = styled(NavLink)`
   font-family: "sub En";
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
 
   color: ${theme.Title};
   transition: color 0.3s ease;

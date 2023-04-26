@@ -16,9 +16,12 @@ import {
   ThemeProvider as MuiThemeProvider,
   createTheme,
 } from "@mui/material/styles";
+import Home from "./pages/Home";
 
 // MUI 컴포넌트에도 글씨 전역설정 적용
-const MUItheme = createTheme({ typography: { fontFamily: "Kr",fontSize: '1.1rem' } });
+const MUItheme = createTheme({
+  typography: { fontFamily: "Kr", fontSize: 15 },
+});
 
 function App() {
   return (
@@ -28,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
+            <Route index element={<Home />} />
             <Route path="introduction" element={<Introduction />} />
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
