@@ -79,7 +79,7 @@ const Projects = () => {
             "React-slick의 세팅값을 조절하여 메인페이지의 매끄러운 상하 스크롤 슬라이더를 구현함",
         },
         {
-          id: 6,
+          id: 5,
           skill: "CSS",
           context:
             "flex / grid를 통해 레이아웃 조작과 반응형 웹 애플리케이션을 구현할 수 있으며 반응형 메뉴리스트를 구현함",
@@ -154,40 +154,40 @@ const Projects = () => {
       </div>
 
       <Slider {...settings} ref={sliderRef}>
-        {projectList.map((project, index) => (
-          <div key={index}>
+        {projectList.map((arr) => (
+          <div key={arr.id}>
             <ImageWrapper
-              onClick={() => goToDetail(project.id)}
-              style={{ cursor: project.id < 3 ? "pointer" : "default" }}
+              onClick={() => goToDetail(arr.id)}
+              style={{ cursor: arr.id < 3 ? "pointer" : "default" }}
             >
-              <Image src={project.img} alt="index" />
-              {project.id < 3 ? (
+              <Image src={arr.img} alt="index" />
+              {arr.id < 3 ? (
                 <ImageText>
-                  <span>{project.name}</span>
-                  <span>{project.duration}</span>
+                  <span>{arr.name}</span>
+                  <span>{arr.duration}</span>
                 </ImageText>
               ) : (
                 <ImageText>
-                  <span>{project.name}</span>
+                  <span>{arr.name}</span>
                   <span>현재 준비 중입니다.👩🏻‍💻</span>
                 </ImageText>
               )}
             </ImageWrapper>
 
             <div>
-              <Name>{project.name}</Name>
-              <Title>{project.title}</Title>
+              <Name>{arr.name}</Name>
+              <Title>{arr.title}</Title>
             </div>
 
             <ContextWrapper>
-              <span>{project.description}</span>
-              <span>{project.duration}</span>
+              <span>{arr.description}</span>
+              <span>{arr.duration}</span>
             </ContextWrapper>
 
             {/* 제작중인 사이트는 버튼 노출되지 않음 */}
-            {project.id < 3 ? (
+            {arr.id < 3 ? (
               <Button>
-                <Link to={"/projects/" + project.id} state={projectList}>
+                <Link to={"/projects/" + arr.id} state={projectList}>
                   More View
                 </Link>
               </Button>
@@ -202,7 +202,6 @@ const Projects = () => {
 export default Projects;
 
 const ProjectWrapper = styled(Wrapper)`
-
   .slick-slide {
     /* 아이템 간 간격 조절 */
     padding-right: 60px;
@@ -241,8 +240,7 @@ const ImageText = styled.div`
 
   span:first-child {
     // 이미지에 호버시 뜨는 프로젝트명
-    font-family: "sub En";
-    font-weight: bold;
+    font-family: "title En";
     font-size: 2rem;
     margin-bottom: 8px;
   }
@@ -257,9 +255,8 @@ const ImageText = styled.div`
 `;
 
 const Name = styled.p`
-  font-family: "sub En";
-  font-size: 2.1rem;
-  font-weight: bold;
+  font-family: "title En";
+  font-size: ${theme.fontSize.subTitle};
   margin: 0 0 15px 0;
 `;
 

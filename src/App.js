@@ -1,10 +1,11 @@
 import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./global/GloblaStyle";
-import theme from "./global/theme.js";
 import { Routes, Route } from "react-router-dom";
+import GlobalStyle from "./global/GloblaStyle";
+import { ThemeProvider } from "styled-components";
+import theme from "./global/theme.js";
+import media from "./global/media";
 
 import Layout from "./pages/Layout";
 import Main from "./pages/Main";
@@ -25,7 +26,7 @@ const MUItheme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={{ theme, media }}>
       <MuiThemeProvider theme={MUItheme}>
         <GlobalStyle />
         <Routes>
@@ -36,7 +37,6 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<ProjectDetail />} />
-            {/* <Route path="" element={</>} /> */}
           </Route>
         </Routes>
       </MuiThemeProvider>

@@ -63,9 +63,9 @@ const ProjectDetail = () => {
         <Term>담당 업무</Term>
         <dd>
           {/* mui의 Nasted List 활용 */}
-          {taskList.map((task) => (
+          {taskList.map((arr) => (
             <List
-              key={task.id}
+              key={arr.id}
               sx={{
                 width: "100%",
                 maxWidth: 600,
@@ -77,14 +77,14 @@ const ProjectDetail = () => {
               component="nav"
               aria-labelledby="nested-list-subheader"
             >
-              <ListItemButton onClick={() => handleClick(task.id)}>
-                <ListItemText primary={task.skill} />
-                {openId === task.id ? <ExpandLess /> : <ExpandMore />}
+              <ListItemButton onClick={() => handleClick(arr.id)}>
+                <ListItemText primary={arr.skill} />
+                {openId === arr.id ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={openId === task.id} timeout="auto" unmountOnExit>
+              <Collapse in={openId === arr.id} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemText sx={{ pl: 2, margin: "20px 0px" }}>
-                    <ListItemText primary={task.context} />
+                    <ListItemText primary={arr.context} />
                   </ListItemText>
                 </List>
               </Collapse>
@@ -98,14 +98,6 @@ const ProjectDetail = () => {
 
 export default ProjectDetail;
 
-// const Wrapper = styled.div`
-//   overflow-y: auto;
-//   width: 100vw;
-//   height: 100vh;
-//   padding: 0px;
-//   margin: 0px;
-//   box-sizing: border-box;
-// `;
 
 const InfoWrapper = styled.div`
   width: 100%;
@@ -116,9 +108,8 @@ const InfoWrapper = styled.div`
 `;
 
 const Name = styled.p`
-  font-family: "sub En";
-  font-size: 3rem;
-  font-weight: bold;
+  font-family: "title En";
+  font-size: ${theme.fontSize.title};
   margin: 0 0 20px 0;
 `;
 
@@ -134,7 +125,8 @@ const Description = styled.p`
 
 const Article = styled.dl`
   display: grid;
-  grid-template-columns: 0.3fr 2fr;
+  grid-template-columns: 0.2fr 2fr;
+  gap: 10px;
 
   > * {
     margin: 0 0 20px 0;

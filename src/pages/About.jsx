@@ -45,7 +45,7 @@ const About = () => {
     <Wrapper>
       <Header>SKILLS</Header>
       <SkillWrapper>
-        {skillArr.map((arr, index) => (
+        {skillArr.map((arr) => (
           <SkillBox key={arr.id}>
             <Skill>
               <span>{arr.skill}</span>
@@ -65,21 +65,22 @@ export default About;
 const SkillWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   justify-items: center;
-  gap: 50px;
+  gap: 80px 0px;
 `;
 
 const SkillBox = styled.div`
   border-top: 2px solid ${theme.SubTitle};
-  width: 27rem;
+  width: 80%;
 `;
 
 const Skill = styled.p`
-  font-family: "Title En";
-  font-size: 2rem;
+  font-family: "title En";
+  font-size: ${theme.fontSize.subTitle};
+  margin: 15px 0;
 
   > span:first-child {
     margin-right: 10px;
   }
 `;
-  gap: 50px 100px;

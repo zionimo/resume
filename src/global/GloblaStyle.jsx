@@ -18,9 +18,8 @@ body {
   padding: 0 5rem 0 0 ;
   /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
   margin: 0;
-  word-break: keep-all; // 단어 단위로 줄바꿈
+  /* word-break: keep-all; // 단어 단위로 줄바꿈 */
   /* word-break: break-all; // 문자 단위로 줄바꿈 */
-  
   
   /* 한글폰트 전역적용 */
   font-family: "Kr";
