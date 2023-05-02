@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Header, Wrapper } from "../global/MyStyles";
 import theme from "../global/theme";
+import media from "../global/media";
 import { FaReact, FaJs, FaHtml5, FaCss3Alt, FaGit } from "react-icons/fa";
 
 const About = () => {
@@ -68,11 +69,21 @@ const SkillWrapper = styled.div`
   grid-template-rows: 1fr 1fr;
   justify-items: center;
   gap: 80px 0px;
-`;
+  
+  ${media.tablet`
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  `}
+  `;
 
 const SkillBox = styled.div`
   border-top: 2px solid ${theme.SubTitle};
   width: 80%;
+  
+  ${media.tablet`
+  width: 100%;
+  `}
+
 `;
 
 const Skill = styled.p`
