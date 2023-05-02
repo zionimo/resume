@@ -1,6 +1,9 @@
 const fontSize = {
   title: "3rem",
   subTitle: "2rem",
+
+  tabletTitle: "2rem",
+  tabletSubTitle: "1rem",
 };
 
 const theme = {

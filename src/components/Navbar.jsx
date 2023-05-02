@@ -27,6 +27,10 @@ const Navbar = () => {
     setOpen(true);
   };
 
+  const handleMenuClick = () => {
+    handleClose();
+  };
+  
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -44,7 +48,7 @@ const Navbar = () => {
 
       <NavWrapper open={open}>
         {navArr.map((arr) => (
-          <Menu key={arr.id} to={arr.component}>
+          <Menu key={arr.id} to={arr.component} onClick={handleMenuClick}>
             {arr.content}
           </Menu>
         ))}
