@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import theme from "./theme";
+import media from "../global/media";
 
 export const Wrapper = styled.div`
   padding: 80px 10rem 80px 100px;
@@ -9,6 +10,10 @@ export const Wrapper = styled.div`
   height: 100%;
   margin: 0px;
   box-sizing: border-box;
+
+  ${media.tablet`
+    padding: 50px 30px;
+  `}
 `;
 
 export const Header = styled.p`

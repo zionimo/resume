@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Header, Wrapper, Button } from "../global/MyStyles";
 import theme from "../global/theme";
+import media from "../global/media";
 
 const Introduction = () => {
   return (
@@ -59,12 +60,23 @@ const Container = styled.div`
   grid-template-columns: 1fr 1.8fr;
   justify-items: end;
   gap: 50px;
+  
+  ${media.tablet`
+    display: flex;
+    flex-direction: column;
+  `}
 `;
 
 const Profile = styled.img`
+  margin-bottom: 20px;
   width: 270px;
   height: 360px;
-  margin-bottom: 20px;
+
+  ${media.tablet`
+    width: 100%;
+    height: auto;
+
+  `}
 `;
 
 const ProfileWrapper = styled.article`

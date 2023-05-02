@@ -1,9 +1,10 @@
 import styled, { keyframes } from "styled-components";
 import theme from "../global/theme";
+import media from "../global/media";
+import { Wrapper } from "../global/MyStyles";
 
 const Home = () => {
   return (
-    <Wrapper>
       <Background>
         <Video
           title="vimeo-player"
@@ -19,22 +20,16 @@ const Home = () => {
           <Job>FRONT-END</Job>
         </Context>
       </Background>
-    </Wrapper>
   );
 };
 
 export default Home;
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
 const Background = styled.div`
+  width: 100%;
+  height: 100vh;
   position: relative;
   padding: 52.7% 0 0 0;
-
-  @media screen and (max-width: 768px) {
-  }
 `;
 
 const Video = styled.iframe`
@@ -47,9 +42,6 @@ const Video = styled.iframe`
   left: 0;
   margin: 0;
   filter: brightness(70%);
-
-  @media screen and (max-width: 768px) {
-  }
 `;
 
 const Context = styled.div`

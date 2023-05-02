@@ -9,21 +9,21 @@ import Projects from "./Projects";
 const Main = () => {
   return (
     <MainWrapper>
-      <div>
+      <Box>
         <Home />
-      </div>
+      </Box>
 
-      <div>
+      <Box>
         <Introduction />
-      </div>
+      </Box>
 
-      <div>
+      <Box>
         <About />
-      </div>
+      </Box>
 
-      <div>
+      <Box>
         <Projects />
-      </div>
+      </Box>
     </MainWrapper>
   );
 };
@@ -31,13 +31,18 @@ const Main = () => {
 export default Main;
 
 const MainWrapper = styled.div`
-  overflow-y: visible;
   width: 100vw;
-  height: 100vh;
+  /* overflow-y: visible; */
+  /* height: 100vh; */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  `;
 
-  > * {
-    margin-bottom: 10px;
-    border-bottom: 1px solid ${theme.SubTitle};
-  }
+const Box = styled.div`
+  margin-bottom: 10px;
+  border-bottom: 1px solid ${theme.SubTitle};
+
+
+  /* height: 100%; */
 `;

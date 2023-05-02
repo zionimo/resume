@@ -28,7 +28,9 @@ body {
   font-size: 1.1rem;
   color: ${theme.Black};
   
+
   ${media.tablet`
+  /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
     padding: 60px 0 0 0;
   `}
 }
@@ -36,7 +38,7 @@ body {
 #wrap {
   height: 100%;
   width: 100%;
-  min-width: 770px;
+  min-width: 768px;
   box-sizing: border-box;
 
 
