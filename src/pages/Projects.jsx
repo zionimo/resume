@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import styled from "styled-components";
 import theme from "../global/theme";
+import media from "../global/media";
 import { Wrapper, Header, Button } from "../global/MyStyles";
 
 const Projects = () => {
@@ -11,11 +12,19 @@ const Projects = () => {
 
   useEffect(() => {
     const handleSlider = (e) => {
-      // 휠 스크롤로 슬라이드 됨 && 슬라이더가 끝에 도달하면 슬라이드 되지 않음
-      if (e.deltaY > 0 && sliderRef.current) {
-        sliderRef.current.slickNext();
-      } else if (e.deltaY < 0 && sliderRef.current) {
-        sliderRef.current.slickPrev();
+      // 슬라이더 구간에 마우스가 있을 때만 슬라이드 넘김
+      // closest 메소드: 가장 가까운 부모엘리먼트 중에서 slick-list 클래스를 가지고 있는 엘리먼트를 찾음
+      if (
+        e.target.closest(".slick-list") ===
+          sliderRef.current.innerSlider.list &&
+        sliderRef.current
+      ) {
+        // 휠 스크롤로 슬라이드 됨 && 슬라이더가 끝에 도달하면 슬라이드 되지 않음
+        if (e.deltaY > 0) {
+          sliderRef.current.slickNext();
+        } else if (e.deltaY < 0) {
+          sliderRef.current.slickPrev();
+        }
       }
     };
 
@@ -29,7 +38,7 @@ const Projects = () => {
   }, [sliderRef.current]);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 400,
     slidesToShow: 2,
@@ -37,6 +46,15 @@ const Projects = () => {
     swipeToSlide: true,
     vertical: false,
     verticalSwiping: false,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const projectList = [
@@ -153,48 +171,50 @@ const Projects = () => {
         <Header>PROJECTS</Header>
       </div>
 
-      <Slider {...settings} ref={sliderRef}>
-        {projectList.map((arr) => (
-          <div key={arr.id}>
-            <ImageWrapper
-              onClick={() => goToDetail(arr.id)}
-              style={{ cursor: arr.id < 3 ? "pointer" : "default" }}
-            >
-              <Image src={arr.img} alt="index" />
+      <SliderWrapper>
+        <Slider {...settings} ref={sliderRef}>
+          {projectList.map((arr) => (
+            <SingleSlide key={arr.id}>
+              <ImageWrapper
+                onClick={() => goToDetail(arr.id)}
+                style={{ cursor: arr.id < 3 ? "pointer" : "default" }}
+              >
+                <Image src={arr.img} alt="index" />
+                {arr.id < 3 ? (
+                  <ImageText>
+                    <span>{arr.name}</span>
+                    <span>{arr.duration}</span>
+                  </ImageText>
+                ) : (
+                  <ImageText>
+                    <span>{arr.name}</span>
+                    <span>현재 준비 중입니다.👩🏻‍💻</span>
+                  </ImageText>
+                )}
+              </ImageWrapper>
+
+              <div>
+                <Name>{arr.name}</Name>
+                <Title>{arr.title}</Title>
+              </div>
+
+              <ContextWrapper>
+                <span>{arr.description}</span>
+                <span>{arr.duration}</span>
+              </ContextWrapper>
+
+              {/* 제작중인 사이트는 버튼 노출되지 않음 */}
               {arr.id < 3 ? (
-                <ImageText>
-                  <span>{arr.name}</span>
-                  <span>{arr.duration}</span>
-                </ImageText>
-              ) : (
-                <ImageText>
-                  <span>{arr.name}</span>
-                  <span>현재 준비 중입니다.👩🏻‍💻</span>
-                </ImageText>
-              )}
-            </ImageWrapper>
-
-            <div>
-              <Name>{arr.name}</Name>
-              <Title>{arr.title}</Title>
-            </div>
-
-            <ContextWrapper>
-              <span>{arr.description}</span>
-              <span>{arr.duration}</span>
-            </ContextWrapper>
-
-            {/* 제작중인 사이트는 버튼 노출되지 않음 */}
-            {arr.id < 3 ? (
-              <Button>
-                <Link to={"/projects/" + arr.id} state={projectList}>
-                  More View
-                </Link>
-              </Button>
-            ) : undefined}
-          </div>
-        ))}
-      </Slider>
+                <Button>
+                  <Link to={"/projects/" + arr.id} state={projectList}>
+                    More View
+                  </Link>
+                </Button>
+              ) : undefined}
+            </SingleSlide>
+          ))}
+        </Slider>
+      </SliderWrapper>
     </ProjectWrapper>
   );
 };
@@ -204,19 +224,32 @@ export default Projects;
 const ProjectWrapper = styled(Wrapper)`
   .slick-slide {
     /* 아이템 간 간격 조절 */
-    padding-right: 60px;
+    padding-right: 2rem;
+    height: 100vh;
+  }
+  .hhIGWl {
+    padding: 20px 0rem 40px 2rem;
+    overflow: hidden;
+    height: auto;
   }
 `;
 
+const SliderWrapper = styled(Wrapper)`
+  border-top: 2px solid ${theme.SubTitle};
+  border-bottom: 2px solid ${theme.SubTitle};
+`;
+
+const SingleSlide = styled.div``;
+
 const ImageWrapper = styled.div`
   position: relative;
-  width: 100%;
+  max-width: 100%;
   height: auto;
 `;
 
 const Image = styled.img`
   max-width: 100%;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 `;
 
 const ImageText = styled.div`
@@ -257,7 +290,7 @@ const ImageText = styled.div`
 const Name = styled.p`
   font-family: "title En";
   font-size: ${theme.fontSize.subTitle};
-  margin: 0 0 15px 0;
+  margin: 15px 0 15px 0;
 `;
 
 const Title = styled.p`
@@ -269,13 +302,12 @@ const Title = styled.p`
 const ContextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
-
   span:first-child {
-    height: 90px; // 설명글&제작기간 래퍼 높이 설정
+    margin-bottom: 10px;
   }
 
   span:last-child {
     font-size: 1rem; // 제작기간 글씨크기 설정
+    margin-bottom: 10px;
   }
 `;

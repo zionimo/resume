@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import theme from "../global/theme";
+import media from "../global/media";
 import styled from "styled-components";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -68,7 +69,7 @@ const ProjectDetail = () => {
               key={arr.id}
               sx={{
                 width: "100%",
-                maxWidth: 600,
+                maxWidth: 620,
                 bgcolor: "background.paper",
                 boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.3)",
                 padding: "0px 0px 0px 0px",
@@ -81,7 +82,12 @@ const ProjectDetail = () => {
                 <ListItemText primary={arr.skill} />
                 {openId === arr.id ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={openId === arr.id} timeout="auto" unmountOnExit>
+              <Collapse
+                in={openId === arr.id}
+                timeout="auto"
+                unmountOnExit
+                style={{ backgroundColor: theme.Navbar }}
+              >
                 <List component="div" disablePadding>
                   <ListItemText sx={{ pl: 2, margin: "20px 0px" }}>
                     <ListItemText primary={arr.context} />
@@ -98,13 +104,17 @@ const ProjectDetail = () => {
 
 export default ProjectDetail;
 
-
 const InfoWrapper = styled.div`
   width: 100%;
   padding: 50px 0 50px 0;
   margin: 0 0 60px 0;
   border-top: 2px solid ${theme.SubTitle};
   border-bottom: 2px solid ${theme.SubTitle};
+
+  ${media.tablet`
+  padding: 30px 0 30px 0;
+  margin: 0 0 30px 0;
+  `}
 `;
 
 const Name = styled.p`
@@ -117,6 +127,11 @@ const Title = styled.p`
   font-size: 1.3rem;
   margin: 0 0 50px 0;
   font-weight: bold;
+
+  ${media.tablet`
+  margin: 0 0 10px 0;
+  
+  `}
 `;
 
 const Description = styled.p`
@@ -125,16 +140,28 @@ const Description = styled.p`
 
 const Article = styled.dl`
   display: grid;
-  grid-template-columns: 0.2fr 2fr;
+  grid-template-columns: 90px 2fr;
   gap: 10px;
 
   > * {
     margin: 0 0 20px 0;
   }
+
+  ${media.tablet`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  `}
 `;
 
 const Term = styled.dt`
   color: ${theme.SubTitle};
+
+  ${media.tablet`
+    height: 1.1rem;
+  `}
 `;
 
 const SiteLink = styled.a`

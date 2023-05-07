@@ -32,8 +32,6 @@ export default Main;
 
 const MainWrapper = styled.div`
   width: 100vw;
-  /* overflow-y: visible; */
-  /* height: 100vh; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -42,7 +40,4 @@ const MainWrapper = styled.div`
 const Box = styled.div`
   margin-bottom: 10px;
   border-bottom: 1px solid ${theme.SubTitle};
-
-
-  /* height: 100%; */
 `;

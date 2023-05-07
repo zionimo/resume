@@ -6,7 +6,6 @@ const GlobalStyle = createGlobalStyle`
 html {
   height: 100%;
   width: 100%;
-  
 }
 
 *, *::before, *::after {
@@ -31,14 +30,14 @@ body {
 
   ${media.tablet`
   /* 네브바 fixed 포지션으로 인해 body값 겹치는 현상 해결 */
-    padding: 60px 0 0 0;
+  padding: 60px 0 0 0;
+  box-sizing: border-box;
   `}
 }
 
 #wrap {
   height: 100%;
   width: 100%;
-  min-width: 768px;
   box-sizing: border-box;
 
 

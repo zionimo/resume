@@ -1,8 +1,9 @@
 import { css } from "styled-components";
 
 const sizes = {
+  mobile: 430,
   tablet: 768,
-  desktop: 102,
+  desktop: 1020,
 };
 
 // Object.keys(sizes)를 사용해서 sizes의 속성이름(mobile,tablet,laptop,desktop)을 배열로 가져옴
