@@ -30,11 +30,11 @@ const Navbar = () => {
   const handleMenuClick = () => {
     handleClose();
   };
-  
+
   return (
     <Wrapper>
       <HeaderWrapper>
-        <Logo>
+        <Logo to="/">
           <RiSeedlingFill />
         </Logo>
         <Toggle>
@@ -110,7 +110,7 @@ const HeaderWrapper = styled.div`
     `}
 `;
 
-const Logo = styled.div`
+const Logo = styled(NavLink)`
   position: absolute;
   left: 47vw;
   top: 15%;
@@ -123,22 +123,23 @@ const Toggle = styled.div`
   position: absolute;
   right: 20px;
   top: 15%;
-
+  cursor: pointer;
+  
   color: ${theme.Title};
-`;
+  `;
 
 const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
-
+  
   ${media.tablet`
-    flex-direction: column;
-    margin: 0px 0 20px 0;
-    display: ${(props) => (props.open ? "flex" : "none")};
+  flex-direction: column;
+  margin: 0px 0 20px 0;
+  display: ${(props) => (props.open ? "flex" : "none")};
   `}
-`;
+  `;
 
 const Menu = styled(NavLink)`
   font-family: "sub En";
@@ -147,7 +148,7 @@ const Menu = styled(NavLink)`
   text-decoration: none;
   padding: 10px;
   margin-top: 20px;
-
+  
   color: ${theme.Title};
   transition: color 0.3s ease;
   &:hover {
@@ -156,7 +157,7 @@ const Menu = styled(NavLink)`
   &.active {
     color: ${theme.Point};
   }
-
+  
   ${media.tablet`
   padding: 10px 0;
   margin-top: 0px;
@@ -174,9 +175,9 @@ const Menu = styled(NavLink)`
     color: ${theme.White};
     background-color: #a5c0b3;
   }
-
+  
   `}
-`;
+  `;
 
 const IconWrapper = styled.div`
   display: flex;
@@ -184,16 +185,17 @@ const IconWrapper = styled.div`
   align-items: center;
   font-size: 1.8rem;
   margin-bottom: 20px;
-
+  
   a {
     color: ${theme.Title};
   }
-
+  
   svg {
     color: ${theme.Title};
     transform: rotate(90deg);
     margin-bottom: 10px;
-
+    cursor: pointer;
+    
     transition: color 0.3s ease;
     &:hover {
       color: ${theme.Point};
@@ -202,22 +204,22 @@ const IconWrapper = styled.div`
       color: ${theme.Point};
     }
   }
-
+  
   ${media.tablet`
-    margin: 0px;
-    font-size: 1.4rem;
-    display: ${(props) => (props.open ? "flex" : "none")};
+  margin: 0px;
+  font-size: 1.4rem;
+  display: ${(props) => (props.open ? "flex" : "none")};
     
-    * {
-      margin: 0 2px;
-    }
-    
-    svg { 
-      transform: rotate(0);
-      &:hover {
+  * {
+    margin: 0 2px;
+  }
+  
+  svg { 
+    transform: rotate(0);
+    &:hover {
       color: ${theme.White};
       filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.7));
       } 
     }  
-  `}
-`;
+    `}
+    `;

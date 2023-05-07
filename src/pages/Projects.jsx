@@ -225,7 +225,7 @@ const ProjectWrapper = styled(Wrapper)`
   .slick-slide {
     /* 아이템 간 간격 조절 */
     padding-right: 2rem;
-    height: 100vh;
+    height: 100%;
   }
   .hhIGWl {
     padding: 20px 0rem 40px 2rem;
