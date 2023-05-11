@@ -48,7 +48,7 @@ const Projects = () => {
     verticalSwiping: false,
     responsive: [
       {
-        breakpoint: 1000,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -174,7 +174,7 @@ const Projects = () => {
       <SliderWrapper>
         <Slider {...settings} ref={sliderRef}>
           {projectList.map((arr) => (
-            <SingleSlide key={arr.id}>
+            <div key={arr.id}>
               <ImageWrapper
                 onClick={() => goToDetail(arr.id)}
                 style={{ cursor: arr.id < 3 ? "pointer" : "default" }}
@@ -211,7 +211,7 @@ const Projects = () => {
                   </Link>
                 </Button>
               ) : undefined}
-            </SingleSlide>
+            </div>
           ))}
         </Slider>
       </SliderWrapper>
@@ -224,22 +224,24 @@ export default Projects;
 const ProjectWrapper = styled(Wrapper)`
   .slick-slide {
     /* 아이템 간 간격 조절 */
-    padding-right: 2rem;
-    height: 100%;
+    /* padding-right: 2rem; */
   }
-  .hhIGWl {
-    padding: 20px 0rem 40px 2rem;
-    overflow: hidden;
-    height: auto;
+  /* 단추위치 조절 */
+  .slick-dots {
+    bottom: -50px;
   }
 `;
 
-const SliderWrapper = styled(Wrapper)`
+const SliderWrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 50px 1rem 100px 1rem;
+
   border-top: 2px solid ${theme.SubTitle};
   border-bottom: 2px solid ${theme.SubTitle};
 `;
-
-const SingleSlide = styled.div``;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -249,7 +251,6 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   max-width: 100%;
-  /* margin-bottom: 15px; */
 `;
 
 const ImageText = styled.div`

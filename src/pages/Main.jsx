@@ -31,7 +31,7 @@ const Main = () => {
 export default Main;
 
 const MainWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

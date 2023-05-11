@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 const Layout = () => {
   return (
     <div id="wrap">
-      <div className="body-container">
+      <div id="body-container">
         <Outlet />
       </div>
 

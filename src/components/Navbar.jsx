@@ -71,15 +71,14 @@ const Navbar = () => {
 export default Navbar;
 
 const Wrapper = styled.div`
+  background-color: ${theme.Navbar};
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   right: 0;
-  box-sizing: border-box;
   width: 5rem;
   height: 100vh;
-  background-color: ${theme.Navbar};
-  margin: 0;
-  padding: 0;
+  z-index: 100;
 
   display: flex;
   writing-mode: vertical-lr;
@@ -88,9 +87,11 @@ const Wrapper = styled.div`
   align-items: center;
 
   ${media.tablet`
+    position: fixed;  
+    top: 0;
     left:0;
-    width:100vw;
-    height:auto;
+    width: 100%;
+    height: auto;
 
     flex-direction: column;
     writing-mode: unset;
@@ -124,22 +125,22 @@ const Toggle = styled.div`
   right: 20px;
   top: 15%;
   cursor: pointer;
-  
+
   color: ${theme.Title};
-  `;
+`;
 
 const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
-  
+
   ${media.tablet`
   flex-direction: column;
   margin: 0px 0 20px 0;
   display: ${(props) => (props.open ? "flex" : "none")};
   `}
-  `;
+`;
 
 const Menu = styled(NavLink)`
   font-family: "sub En";
@@ -148,7 +149,7 @@ const Menu = styled(NavLink)`
   text-decoration: none;
   padding: 10px;
   margin-top: 20px;
-  
+
   color: ${theme.Title};
   transition: color 0.3s ease;
   &:hover {
@@ -157,7 +158,7 @@ const Menu = styled(NavLink)`
   &.active {
     color: ${theme.Point};
   }
-  
+
   ${media.tablet`
   padding: 10px 0;
   margin-top: 0px;
@@ -177,7 +178,7 @@ const Menu = styled(NavLink)`
   }
   
   `}
-  `;
+`;
 
 const IconWrapper = styled.div`
   display: flex;
@@ -185,17 +186,17 @@ const IconWrapper = styled.div`
   align-items: center;
   font-size: 1.8rem;
   margin-bottom: 20px;
-  
+
   a {
     color: ${theme.Title};
   }
-  
+
   svg {
     color: ${theme.Title};
     transform: rotate(90deg);
     margin-bottom: 10px;
     cursor: pointer;
-    
+
     transition: color 0.3s ease;
     &:hover {
       color: ${theme.Point};
@@ -204,7 +205,7 @@ const IconWrapper = styled.div`
       color: ${theme.Point};
     }
   }
-  
+
   ${media.tablet`
   margin: 0px;
   font-size: 1.4rem;
@@ -222,4 +223,4 @@ const IconWrapper = styled.div`
       } 
     }  
     `}
-    `;
+`;
