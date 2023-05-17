@@ -79,6 +79,8 @@ const SkillWrapper = styled.div`
 const SkillBox = styled.div`
   border-top: 2px solid ${theme.SubTitle};
   width: 80%;
+  box-sizing: border-box;
+  padding: 0 1rem 0 1rem;
   
   ${media.tablet`
   width: 100%;
