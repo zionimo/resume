@@ -166,7 +166,7 @@ const Projects = () => {
   };
 
   return (
-    <ProjectWrapper>
+    <Wrapper>
       <div>
         <Header>PROJECTS</Header>
       </div>
@@ -215,33 +215,39 @@ const Projects = () => {
           ))}
         </Slider>
       </SliderWrapper>
-    </ProjectWrapper>
+    </Wrapper>
   );
 };
 
 export default Projects;
 
-const ProjectWrapper = styled(Wrapper)`
+const SliderWrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 50px 1rem 100px 1rem;
+  
+  border-top: 2px solid ${theme.SubTitle};
+  border-bottom: 2px solid ${theme.SubTitle};
+  
   .slick-slide {
+    box-sizing: border-box;
     /* 아이템 간 간격 조절 */
-    /* padding-right: 2rem; */
+    padding: 0 25px 0 25px;
   }
+
   /* 단추위치 조절 */
   .slick-dots {
     bottom: -50px;
   }
-`;
 
-const SliderWrapper = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  padding: 50px 1rem 100px 1rem;
-
-  border-top: 2px solid ${theme.SubTitle};
-  border-bottom: 2px solid ${theme.SubTitle};
-`;
+  ${media.tablet`
+  .slick-slide {
+    padding: 0;
+  }
+  `}
+  `;
 
 const ImageWrapper = styled.div`
   position: relative;
